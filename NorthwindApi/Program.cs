@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NorthwindApi.DbContexts;
+using System.Text.Json.Serialization;
 
 namespace NorthwindApi;
 
@@ -10,7 +11,10 @@ public static class Program
 
 		var builder = WebApplication.CreateBuilder(args);
 
-		builder.Services.AddControllers();
+		builder.Services.AddControllers().AddJsonOptions(opts =>
+		{
+			opts.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+		});
 
 		// Add services to the container.
 		// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
