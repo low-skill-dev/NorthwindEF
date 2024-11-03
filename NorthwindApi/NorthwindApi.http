@@ -9,3 +9,8 @@ GET {{NorthwindApi_HostAddress}}/products/GetProductsPreComp
 Accept: application/json
 
 ###
+
+GET {{NorthwindApi_HostAddress}}/products/GetProductsStored
+Accept: application/json
+
+###

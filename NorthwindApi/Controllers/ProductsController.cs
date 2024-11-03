@@ -61,4 +61,24 @@ public class ProductsController : ControllerBase
 
 		return Ok(GetSuppliersAndProductsByFirstSupplierName(_context, "A").ToBlockingEnumerable().ToList());
 	}
+
+	[HttpGet]
+	public async Task<IActionResult> GetProductsStored()
+	{
+		//var req = _context.Orders.AsSplitQuery().OrderBy(x => x.CustomerId).Join(
+		//	_context.Customers, x => x.CustomerId, x => x.CustomerId, (o, c) =>
+		//	new { o.OrderId, o.OrderDate, c.CustomerId, c.ContactName });
+
+		//var req = _context.Orders.Include(x=> x.Customer).AsSplitQuery().Select(x=> 
+		//	new { x.OrderId, x.OrderDate, x.Customer.CustomerId, x.Customer.ContactName })
+		//	.OrderBy(x=> x.CustomerId);
+		
+		//var req = _context.Suppliers.Include(x => x.Products).AsSplitQuery();
+
+		//var res = await req.ToListAsync();
+
+		//await _context.Set<Test>().FromSqlRaw("EXECUTE GetSuppByParams @p0 @p1", [20, 27]).ToListAsync();
+
+		return Ok(await _context.Set<Test>().FromSqlRaw("EXECUTE GetSuppByParams(20, 27)").ToListAsync());
+	}
 }

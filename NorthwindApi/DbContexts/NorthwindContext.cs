@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NorthwindModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NorthwindApi.DbContexts;
 
@@ -33,6 +34,8 @@ public partial class NorthwindContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+		modelBuilder.Entity<Test>().HasNoKey();
+
         modelBuilder.Entity<Category>(entity =>
         {
             entity.HasKey(e => e.CategoryId).HasName("pk_categories");
