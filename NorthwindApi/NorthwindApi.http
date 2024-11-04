@@ -1,16 +1,16 @@
 @NorthwindApi_HostAddress = http://localhost:5018
 
-GET {{NorthwindApi_HostAddress}}/products/GetProducts
+GET {{NorthwindApi_HostAddress}}/products/Methdod1
 Accept: application/json
 
 ###
 
-GET {{NorthwindApi_HostAddress}}/products/GetProductsPreComp
+GET {{NorthwindApi_HostAddress}}/products/Methdod2
 Accept: application/json
 
 ###
 
-GET {{NorthwindApi_HostAddress}}/products/GetProductsStored
+GET {{NorthwindApi_HostAddress}}/products/Methdod3
 Accept: application/json
 
 ###

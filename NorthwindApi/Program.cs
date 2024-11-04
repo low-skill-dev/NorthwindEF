@@ -8,8 +8,7 @@ public static class Program
 {
 	public static void Main(string[] args)
 	{
-
-		var builder = WebApplication.CreateBuilder(args);
+		var builder = WebApplication.CreateSlimBuilder(args);
 
 		builder.Services.AddControllers().AddJsonOptions(opts =>
 		{
@@ -41,7 +40,7 @@ public static class Program
 		app.Services.CreateScope().ServiceProvider.GetRequiredService<NorthwindContext>()
 			.Database.ExecuteSqlRaw("""
 				CREATE OR REPLACE FUNCTION GetSuppByParams(minId int, maxId int) 
-				RETURNS TABLE (s_id INT2, s_name TEXT) AS $$
+				RETURNS TABLE (s_id INT2, s_name VARCHAR(30)) AS $$
 				BEGIN
 					RETURN QUERY SELECT supplier_id, contact_name FROM suppliers WHERE supplier_id BETWEEN minId AND maxId;
 				END;
@@ -50,10 +49,4 @@ public static class Program
 
 		app.Run();
 	}
-}
-
-class Test
-{
-	public int s_id { get; set; }
-	public string s_name { get; set; }
 }
